@@ -93,7 +93,6 @@ int removeAresta(Grafo* gr, int orig, int dest, int eh_digrafo){
     return 1;
 }
 
-
 void libera_Grafo(Grafo* gr){
     if(gr != NULL){
         int i;
@@ -109,13 +108,6 @@ void libera_Grafo(Grafo* gr){
         free(gr->grau);
         free(gr);
     }
-}
-
-void buscaProfundidade_Grafo(Grafo *gr, int ini, int *visitado){
-    int i, cont = 1;
-    for(i = 0; i < gr->nro_vertices; i++)
-        visitado[i] = 0;
-    buscaProfundidade(gr, ini, visitado, cont);
 }
 
 void buscaLargura_Grafo(Grafo *gr, int ini, int *visitado){
@@ -185,12 +177,32 @@ void menorCaminho_Grafo(Grafo *gr, int ini, int *ant, float *dist){
     }
 }
 
+void buscaProfundidade_Grafo(Grafo *gr, int ini, int *visitado){
+    int i, cont = 1;
+    for(i = 0; i < gr->nro_vertices; i++)
+        visitado[i] = 0;
+    buscaProfundidade(gr, ini, visitado, cont);
+}
+
 void buscaProfundidade(Grafo *gr, int ini, int *visitado, int cont){
     int i;
     visitado[ini] = cont;
 
     for(i = 0; i < gr-> grau[ini]; i++){
-        if(!visitado[gr->arestas[ini][i])
-            buscaProfundidade(gr, gr->arestas[ini])[i], visitado, cont+1);
+        if(!visitado[gr->arestas[ini][i]])
+            buscaProfundidade(gr, gr->arestas[ini][i], visitado, cont+1);
+    }
+}
+
+void imprimir_Grafo(Grafo ** gr){
+
+    if(gr == NULL){
+        printf("Grafo esta Vazio!");
+    }else{
+        for(int i = 0; gr->nro_vertices > i;i++){
+            for(int j = 0; gr->nro_vertices > j; j++){
+                printf("\t%i ",gr[i][j]);
+            }
+        }
     }
 }

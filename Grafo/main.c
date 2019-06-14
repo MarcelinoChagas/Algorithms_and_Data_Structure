@@ -11,6 +11,7 @@ int main()
     removeAresta(gr, 0, 1, 0);
 
     libera_Grafo(gr);
+    imprimir_Grafo(gr);
 
     system("pause");
     return 0;

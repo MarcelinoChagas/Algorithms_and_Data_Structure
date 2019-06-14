@@ -17,4 +17,6 @@ void buscaLargura_Grafo(Grafo *gr, int ini, int *visitado);
 
 void menorCaminho_Grafo(Grafo *gr, int ini, int *ant, float *dist);
 
+void imprimir_Grafo(Grafo *gr);
+
 #endif // GRAFO_H_INCLUDED
