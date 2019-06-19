@@ -93,13 +93,12 @@ void libera_Grafo(Grafo* gr){
     }
 }
 
-
 void imprimir_Grafo(Grafo *gr){
    for(int i = 0; gr->nro_vertices > i; i++){
-        for(int j = 0; gr->nro_vertices > j; j++){
-            printf("\t%i",gr->pesos[i][j]);
-        }
         printf("\n");
+        for(int j = 0; gr->nro_vertices > j; j++){
+            printf("\t%.2f",gr->pesos[i][j]);
+        }
    }
 }
 
@@ -108,10 +107,9 @@ int main(void) {
     Grafo *gr;
 
     gr = cria_grafo(5,2,1);
-
-    insereAresta(gr,1,2,0,10);
+    insereAresta(gr,1,2,1,10);
     insereAresta(gr,2,3,0,20);
-    insereAresta(gr,4,5,0,30);
+    insereAresta(gr,4,1,0,30);
 
     imprimir_Grafo(gr);
 
