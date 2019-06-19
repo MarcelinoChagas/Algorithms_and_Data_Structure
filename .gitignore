@@ -1,2 +1,4 @@
 
 *.layout
+*.ipch
+*.bin
