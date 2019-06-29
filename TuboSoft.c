@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <windows.h>
 
 typedef struct grafo{
   int ponderado;        // 1-Ponderado 0-Nao e ponderado
@@ -9,17 +11,20 @@ typedef struct grafo{
   int **arestas;        // Matrix de Aresta que Liga os Grafos
   float** pesos;        // Peso do Grafo
   int* grau;              // Numero de arestas do grafo
-  struct pessoa *ps;  // Referencia Struct de pessoas
+ // struct cidade *Cidade[20];          // Posicao da Cidade
 }Grafo;
 
-typedef struct pessoa{
-  char nome_cidade[40];
-  int populacao;
-}Pessoa;
+struct cidade{
+    char nome[40];
+    int populacao;
+};
+
+//typedef struct cidade Cidade;
 
 Grafo *cria_grafo(int nro_vertices, int grau_max, int ponderado){
 
   Grafo *gr = (Grafo *) malloc(sizeof(struct grafo));
+//  Cidade *cid = (Cidade *) malloc(sizeof(struct cidade));
 
   if(gr != NULL){
 
@@ -76,6 +81,16 @@ int insereAresta(Grafo* gr, int orig, int dest, int eh_digrafo, float peso){
     return 1;
 }
 
+/*int insereCidades(Grafo* gr, char nome, int populacao,int pos){
+
+    if(gr == NULL)
+        return 0;
+    if(gr->nro_vertices >= pos || pos >=0){
+        Cidade->nome[pos] = nome;
+        Cidade->populacao[pos] = populacao;
+    }
+}*/
+
 void libera_Grafo(Grafo* gr){
     if(gr != NULL){
         int i;
@@ -94,25 +109,44 @@ void libera_Grafo(Grafo* gr){
 }
 
 void imprimir_Grafo(Grafo *gr){
+
    for(int i = 0; gr->nro_vertices > i; i++){
-        printf("\n");
         for(int j = 0; gr->nro_vertices > j; j++){
             printf("\t%.2f",gr->pesos[i][j]);
         }
+        printf("\n");
    }
 }
 
-
 int main(void) {
     Grafo *gr;
+    gr = cria_grafo(3,2,1);
 
-    gr = cria_grafo(5,2,1);
+    int i;
+    int qtd_cidade = gr->nro_vertices;
+
+    struct cidade Cidade[qtd_cidade];
+
+    for(i = 1; i <= qtd_cidade;i++){
+        printf("Digite o nome da %d Cidade: ",i);
+        gets(Cidade[i].nome);
+        printf("\nDigite o tamanho da populacao: ");
+        scanf("%d",&Cidade[i].populacao);
+        fflush(stdin);
+        system("cls");
+    }
+
     insereAresta(gr,1,2,1,10);
     insereAresta(gr,2,3,0,20);
-    insereAresta(gr,4,1,0,30);
+    insereAresta(gr,3,1,1,10);
+    //insereAresta(gr,4,5,0,30);
 
     imprimir_Grafo(gr);
 
+    printf("\t\nNome das Cidades\n\n");
+    for(i = 1; i <= qtd_cidade; i++){
+      printf("%s %d\n",Cidade[i].nome, Cidade[i].populacao);
 
+    }
     return 0;
 }
