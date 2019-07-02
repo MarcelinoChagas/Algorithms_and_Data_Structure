@@ -11,13 +11,13 @@ typedef struct grafo{
   int **arestas;        // Matrix de Aresta que Liga os Grafos
   float** pesos;        // Peso do Grafo
   int* grau;              // Numero de arestas do grafo
- // struct cidade *Cidade[20];          // Posicao da Cidade
+  struct cidade *cid;          // Posicao da Cidade
 }Grafo;
 
-struct cidade{
+typedef struct cidade{
     char nome[40];
     int populacao;
-};
+}Cidade[10];
 
 //typedef struct cidade Cidade;
 
@@ -81,15 +81,30 @@ int insereAresta(Grafo* gr, int orig, int dest, int eh_digrafo, float peso){
     return 1;
 }
 
-/*int insereCidades(Grafo* gr, char nome, int populacao,int pos){
+void insereCidades(Grafo* gr,int pos){
+    char aux [40];
 
-    if(gr == NULL)
-        return 0;
     if(gr->nro_vertices >= pos || pos >=0){
-        Cidade->nome[pos] = nome;
-        Cidade->populacao[pos] = populacao;
+
+        printf("\nDigite o nome da Cidade: ");
+        fgets(aux,40,stdin);
+        printf("\nDigite a populacao da Cidade: ");
+        scanf("%d",&gr->cid[pos].populacao);
     }
-}*/
+
+   /*if(gr->nro_vertices >= pos || pos >=0){
+        strcpy(gr->cid[pos].nome, nome);
+        gr->cid[pos].populacao = populacao;
+    }
+    */
+}
+
+void imprimir_Cidade(Grafo *gr){
+    int i;
+    for(i = 1; i<(gr->nro_vertices);i++){
+        printf("%s %d", (gr->cid[i].nome),(gr->cid[i].populacao));
+    }
+}
 
 void libera_Grafo(Grafo* gr){
     if(gr != NULL){
@@ -110,8 +125,8 @@ void libera_Grafo(Grafo* gr){
 
 void imprimir_Grafo(Grafo *gr){
 
-   for(int i = 0; gr->nro_vertices > i; i++){
-        for(int j = 0; gr->nro_vertices > j; j++){
+   for(int i = 0; gr->nro_vertices >= i; i++){
+        for(int j = 0; gr->nro_vertices >= j; j++){
             printf("\t%.2f",gr->pesos[i][j]);
         }
         printf("\n");
@@ -125,28 +140,33 @@ int main(void) {
     int i;
     int qtd_cidade = gr->nro_vertices;
 
-    struct cidade Cidade[qtd_cidade];
-
-    for(i = 1; i <= qtd_cidade;i++){
+   /* for(i = 1; i <= qtd_cidade;i++){
         printf("Digite o nome da %d Cidade: ",i);
         gets(Cidade[i].nome);
         printf("\nDigite o tamanho da populacao: ");
         scanf("%d",&Cidade[i].populacao);
         fflush(stdin);
         system("cls");
-    }
+    }*/
 
     insereAresta(gr,1,2,1,10);
     insereAresta(gr,2,3,0,20);
     insereAresta(gr,3,1,1,10);
+
     //insereAresta(gr,4,5,0,30);
+
+    insereCidades(gr,1);
+
+    imprimir_Cidade(gr);
+
+    printf("Teste");
+
 
     imprimir_Grafo(gr);
 
-    printf("\t\nNome das Cidades\n\n");
-    for(i = 1; i <= qtd_cidade; i++){
+   /* for(i = 1; i <= qtd_cidade; i++){
       printf("%s %d\n",Cidade[i].nome, Cidade[i].populacao);
 
-    }
+    } */
     return 0;
 }
