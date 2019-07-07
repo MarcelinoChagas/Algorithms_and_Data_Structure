@@ -1,14 +1,16 @@
 # depslib dependency file v1.0
-1562030746 source:c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\main.c
+1562457139 source:c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Grafo.h"
 
-1562031370 source:c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\grafo.c
+1562510366 source:c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\grafo.c
 	<stdio.h>
 	<stdlib.h>
 	"Grafo.h"
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
 	<windows.h>
 
-1562027590 c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\grafo.h
+1562460314 c:\users\marcelino chagas\documents\github\algorithms_and_data_structure\tubosoft\grafo.h
 
